@@ -11,17 +11,17 @@ from QuadraticEquation import solve
 
 e = sys.float_info.epsilon
 
-
-
 class TestQuadraticEquasion(unittest.TestCase):
  
-    # вспомогательная функция для проверки массивов из 2х элементов ))
+    # вспомогательная функция для проверки массивов из 2х элементов,
+    # потому что assertListEqual не умеет работать с float
     def assertArr(self, arr1, arr2, e):
         self.assertAlmostEqual(arr1[0], arr2[0], delta=e)
         self.assertAlmostEqual(arr1[1], arr2[1], delta=e)
         
     # 3 Написать тест, который проверяет, что для уравнения x^2+1 = 0 корней нет 
-    # (возвращается пустой массив)   
+    # (возвращается пустой массив)
+    # убеждаемся что пришел пустой массив и с float не работаем
     def test_no_roots(self):
         self.assertListEqual(solve(1,0,1,e), [])
 
