@@ -6,23 +6,24 @@ ax^2 + bx + c = 0
 
 @author: anton
 """
-import sys
-import math
+import sys, math
 
 e = sys.float_info.epsilon
 
-def solve (a,b,c,e):
+def solve (a, b, c, e):
+    
+    # 'a' не ноль
     # Примечание. Учесть, что a имеет тип double и сравнивать с 0 через == нельзя.
     if abs(a)<=e: 
         print ('Ошибка: \'a\' не должно быть равно нулю') 
         raise ValueError('\'a\' не должно быть равно нулю')
 
-    # abc не NAN
+    # 'abc' не NaN
     if math.isnan(a) or math.isnan(b) or math.isnan(c): 
         print ('Ошибка: \'a,b,c\' не могут быть NaN') 
         raise ValueError('\'a,b,c\' не могут быть NaN')
 
-    # abc не infinity
+    # 'abc' не infinity
     if math.isinf(a) or math.isinf(b) or math.isinf(c): 
         print ('Ошибка: \'a,b,c\' не могут быть Infinity') 
         raise ValueError('\'a,b,c\' не могут быть Infinity')
@@ -30,19 +31,21 @@ def solve (a,b,c,e):
     # дискриминант
     d = b ** 2 - 4 * a * c;
     print ("d =", "{:.50f}".format(d))
+    
+    # d<0 результат - пустой массив
     if d < -e :
         print ("Нет вещественных корней")
         return []
+    
+    # d<0 результат -массив из 2х элементов
     if d > e : 
         print ("Два вещественных корня")
         return [-b+math.sqrt(d)/(2*a),-b-math.sqrt(d)/(2*a)]
+    
+    # d<0 результат - пустой массив
     if abs(d) <= e : 
         print ("Один вещественный корень")
         return [-b/(2*a),-b/(2*a)]
-
-
-#print (solve (1,0,e/4,e))
-
 
 
 
